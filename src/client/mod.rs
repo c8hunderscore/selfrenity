@@ -1,4 +1,4 @@
-//! The Client contains information about a single bot's token, as well
+//! The Client contains information about a single bot's g, as well
 //! as event handlers. Dispatching events to configured handlers and starting
 //! the shards' connections are handled directly via the client. In addition,
 //! the `http` module and `Cache` are also automatically handled by the
@@ -144,10 +144,7 @@ impl<'a> ClientBuilder<'a> {
     /// Sets a token for the bot. If the token is not prefixed "Bot ",
     /// this method will automatically do so.
     pub fn token(mut self, token: impl AsRef<str>) -> Self {
-        let token = token.as_ref().trim();
-
-        let token =
-            if token.starts_with("Bot ") { token.to_string() } else { format!("Bot {}", token) };
+        let token = token.as_ref().trim().to_string();
 
         self.token = Some(token.clone());
 
